@@ -6,6 +6,7 @@
 - Create a `.env` file in the root directory and add the following environment variable
     - `PORT = 3000`
 - Inside the `src/config` folder, add the following piece of json in the `config.json` file
+- Inside the `config` folder, add the following piece of json in the `config.json` file
   
 ```
 {
@@ -20,3 +21,4 @@
 
 ```
 - Once you've added your db config as listed above, go to the src folder from your terminal and execute npx sequelize db:create and then execute
+```
