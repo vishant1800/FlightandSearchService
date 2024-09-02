@@ -1,7 +1,3 @@
 node_modules/
 .env
-<<<<<<< HEAD
 src/config/config.json
-=======
-config/config.json
->>>>>>> b507cfc8711baf5e4f4ea53d409815427c4a01bc
