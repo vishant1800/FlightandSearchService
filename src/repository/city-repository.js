@@ -30,11 +30,19 @@ class CityRepository {
 
     async updateCity(cityId, data) {  //data is the object ex: { name : 'mumbai'}
         try {
-            const city = await City.update(data, {
-                where: {
-                    id: cityId
-                }
-            })
+            // The below approach will work but will not return the updated object whereas it returns an array with one elements
+            // which tells about the number of affected rows
+            // If we are using PgSQL then returning: true and plain: true will work
+            // const city = await City.update(data, {
+            //     where: {
+            //         id: cityId
+            //     }
+            // })
+            
+            // for getting updated data object in MySql we use the below approach
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
             return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer")
