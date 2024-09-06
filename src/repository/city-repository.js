@@ -1,11 +1,11 @@
-//const { where } = require("sequelize");
+const { Op } = require("sequelize");
 const { City } = require("../models/index")
 
 class CityRepository {
     async createCity({ name }) {
         try {
             const city = await City.create({ name });  //create and destroy are sequelize functions
-            // At line 7, ({name}) this means ({name: name})
+            // At line 7, ({name}) this means ({this.name: name})
             // First `name`, is the one that is mentioned in models //Second one is that which you have passes in function i.e. name provided while calling function
             return city;
         }
@@ -30,7 +30,7 @@ class CityRepository {
 
     async updateCity(cityId, data) {  //data is the object ex: { name : 'mumbai'}
         try {
-            // The below approach will work but will not return the updated object whereas it returns an array with one elements
+            // The below approach will work but will not return the updated object whereas it returns an array with one element
             // which tells about the number of affected rows
             // If we are using PgSQL then returning: true and plain: true will work
             // const city = await City.update(data, {
@@ -38,8 +38,9 @@ class CityRepository {
             //         id: cityId
             //     }
             // })
-            
+
             // for getting updated data object in MySql we use the below approach
+            //this also returns array of objects contains info about cities
             const city = await City.findByPk(cityId);
             city.name = data.name;
             await city.save();
@@ -60,8 +61,18 @@ class CityRepository {
         }
     }
 
-    async getAllCities() {
+    async getAllCities(filter) {
         try {
+            if (filter.name) {
+                const cities = await City.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name
+                        }
+                    }
+                })
+                return cities;
+            }
             const cities = await City.findAll();
             return cities;
         } catch (error) {
