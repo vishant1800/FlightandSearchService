@@ -1,6 +1,6 @@
 const { CityService } = require('../services/index')
 
-const cityService = new CityService;
+const cityService = new CityService();
 
 const create = async (req, res) => {
     try {
