@@ -9,7 +9,7 @@ class CrudService {
             return response;
         } catch (error) {
             console.log("Something went wrong in the crud service");
-            throw {error}
+            throw { error }
         }
     }
 
@@ -19,7 +19,7 @@ class CrudService {
             return response;
         } catch (error) {
             console.log("Something went wrong in the crud service");
-            throw {error}
+            throw { error }
         }
     }
 
@@ -29,7 +29,7 @@ class CrudService {
             return response;
         } catch (error) {
             console.log("Something went wrong in the crud service");
-            throw {error}
+            throw { error }
         }
     }
 
@@ -39,17 +39,17 @@ class CrudService {
             return response;
         } catch (error) {
             console.log("Something went wrong in the crud service");
-            throw {error}
+            throw { error }
         }
     }
 
     async update(id, data) {
         try {
-            const response = await this.repository.update(id,data);
+            const response = await this.repository.update(id, data);
             return response;
         } catch (error) {
             console.log("Something went wrong in the crud service");
-            throw {error}
+            throw { error }
         }
     }
 }
